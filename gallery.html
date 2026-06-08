@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Галерея - Всё о Бобрах</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+    <body>
+        <header class="gallery-header">
+            <div class="header-content">
+                <h1><i class="fas fa-images"></i> Фотогалерея</h1>
+                <p class="subtitle">Коллекция изображений по теме: <span class="theme-name">Бобры</span></p>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-grid">
+                    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i>Главная</a></li>
+                    <li><a href="gallery.html" class="nav-link active"><i class="fas fa-camera"></i> Галерея</a></li>
+                    <li><a href="contacts.html" class="nav-link"><i class="fas fa-info-circle"></i> Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="gallery-container">
+            <div class="controls-panel">
+                <div class="stats">
+                    <span class="stat-item">
+                        <i class="fas fa-image"></i>
+                        Изображений: <span id="image-counter">0</span>
+                    </span>
+                    <span class="stat-item">
+                        <i class="fas fa-heart"></i>
+                        Всего лайков: <span id="total-likes">0</span>
+                    </span>
+                </div>
+                <div class="view-controls">
+                    <button id="grid-view" class="view-btn active">
+                        <i class="fas fa-th"></i> Сетка
+                    </button>
+                    <button id="list-view" class="view-btn">
+                        <i class="fas fa-list"></i> Список
+                    </button>
+                </div>
+            </div>
+            <div class="filters">
+                <h3><i class="fas fa-filter"></i> Фильтры:</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Бобр</button>
+                    <button class="filter-btn" data-filter="cute">милота</button>
+                    <button class="filter-btn" data-filter="cool">крутяк</button>
+                    <button class="filter-btn" data-filter="orisit">бытие</button>
+                    <button class="filter-btn" data-filter="questions">вопросы-что-лучше-не-задавать</button>
+                    <button class="filter-btn" data-filter="earth">земля</button>
+                    <button class="filter-btn" data-filter="end">конец</button>
+                </div>
+            </div>
+<!-- ГАЛЕРЕЯ С ИСПОЛЬЗОВАНИЕМ CSS GRID -->
+            <div class="gallery-grid" id="image-gallery">
+<!-- Карточки изображений будут добавлены здесь -->
+
+<!-- Карточка 1 -->
+                <article class="image-card" data-category="cute">
+                    <div class="card-image">
+                        <img src="images/bober1.jpg" alt="Бобр" class="gallery-img" loading="lazy">
+                        <div class="image-overlay">
+                            <button class="like-btn" data-id="1">
+                                <i class="far fa-heart"></i>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="image-title">Какая милота!</h3>
+                        <p class="image-date"><i class="far fa-calendar"></i> 25 марта 2025</p>
+                        <p class="image-description">Это фото такое милое! И бобр тоже! Жизнь прекрасна!</p>
+                        <div class="image-tags">
+                            <span class="tag">милота</span>
+                            <span class="tag">Бобр</span>
+                        </div>
+                    </div>
+                </article>
+
+<!-- Карточка 2 -->                    
+                <article class="image-card" data-category="cool">
+                    <div class="card-image">
+                        <img src="images/bober2.jpg" alt="Бобр. Другой." class="gallery-img" loading="lazy">
+                        <div class="image-overlay">
+                            <button class="like-btn" data-id="1">
+                                <i class="far fa-heart"></i>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="image-title">Он такой клёвый!</h3>
+                        <p class="image-date"><i class="far fa-calendar"></i> 31 февраля 2012</p>
+                        <p class="image-description">Фото тоже клёвое и крутое. Всё прекрасно! Мне нравится здесь, в одном мире с Бобрами.</p>
+                        <div class="image-tags">
+                            <span class="tag">крутяк</span>
+                            <span class="tag">Бобр</span>
+                        </div>
+                    </div>
+                </article>
+
+<!-- Карточка 3 -->
+                <article class="image-card" data-category="orisit">
+                    <div class="card-image">
+                        <img src="images/bober3.jpg" alt="Бобр, но другой" class="gallery-img" loading="lazy">
+                        <div class="image-overlay">
+                            <button class="like-btn" data-id="2">
+                                <i class="far fa-heart"></i>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="image-title">Зачем мне это всё?</h3>
+                        <p class="image-date"><i class="far fa-calendar"></i> 1 июня 1902</p>
+                        <p class="image-description">Жизнь, близкие, другие... Когда я могу смотреть на Бобров... Вечность.</p>
+                        <div class="image-tags">
+                            <span class="tag">бытие</span>
+                            <span class="tag">Бобр</span>
+                        </div>
+                    </div>
+                </article>
+
+<!-- Карточка 4 -->
+                <article class="image-card" data-category="questions">
+                    <div class="card-image">
+                        <img src="images/bober4.jpg" alt="Совсем другой бобр" class="gallery-img" loading="lazy">
+                        <div class="image-overlay">
+                            <button class="like-btn" data-id="2">
+                                <i class="far fa-heart"></i>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="image-title">Что это?</h3>
+                        <p class="image-date"><i class="far fa-calendar"></i> 04.05.2028 23:56</p>
+                        <p class="image-description">Не важно.</p>
+                        <div class="image-tags">
+                            <span class="tag">вопросы-что-лучше-не-задавать</span>
+                            <span class="tag">Бобр</span>
+                        </div>
+                    </div>
+                </article>
+
+<!-- Карточка 5 -->
+                <article class="image-card" data-category="earth">
+                    <div class="card-image">
+                        <img src="images/bober5.jpg" alt="Еще один бобр, но он... другой" class="gallery-img" loading="lazy">
+                        <div class="image-overlay">
+                            <button class="like-btn" data-id="2">
+                                <i class="far fa-heart"></i>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="image-title">Где это?</h3>
+                        <p class="image-date"><i class="far fa-calendar"></i> 7 мая 1666</p>
+                        <p class="image-description">Это фото Бобра было сделано на планете Земля. Оно несёт в себе тайный посыл.</p>
+                        <div class="image-tags">
+                            <span class="tag">земля</span>
+                            <span class="tag">Бобр</span>
+                        </div>
+                    </div>
+                </article>
+
+<!-- Карточка 6 -->
+                <article class="image-card" data-category="end">
+                    <div class="card-image">
+                        <img src="images/bober6.jpg" alt="Описание второго изображения" class="gallery-img" loading="lazy">
+                        <div class="image-overlay">
+                            <button class="like-btn" data-id="2">
+                                <i class="far fa-heart"></i>
+                                <span class="like-count">0</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="image-title">Кто это?</h3>
+                        <p class="image-date"><i class="far fa-calendar"></i> 5 дней до конца</p>
+                        <p class="image-description">Узрите же Бобра! Прародитель жизни, отец и мать, альфа и Омега! Наш создатель... и наша Погибель.</p>
+                        <div class="image-tags">
+                            <span class="tag">конец</span>
+                            <span class="tag">Бобр</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+            <aside class="gallery-info">
+                <h3><i class="fas fa-lightbulb"></i> Интересный факт</h3>
+                    <p>Свет от Бобра до человеческого глаза идёт 8 световых лет.</p>
+            </aside>
+        </main>
+        <footer class="gallery-footer">
+            <div class="footer-content">
+                <p>©Задорин Иван, студент 1 курса, группа 1ИП-2-25, 2026</p>
+                <p class="js-status">JavaScript загружен и работает!</p>
+            </div>
+        </footer>
+<!-- ПОДКЛЮЧЕНИЕ JAVASCRIPT -->
+        <script src="script.js"></script>
+    </body>
+</html>
+<link rel="stylesheet" href="style.css">

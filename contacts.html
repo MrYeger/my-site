@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - Всё о Бобрах</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .contacts-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* ========== ИНФОРМАЦИОННАЯ КАРТОЧКА ========== */
+        .info-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .info-card::before {
+            content: "\f2bd";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 120px;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .card-header i {
+            font-size: 48px;
+            color: #bada55;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .card-header h2 {
+            font-size: 28px;
+            color: #2c3e2f;
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .contact-list {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact-list li:nth-child(odd) {
+            background-color: rgba(186, 218, 85, 0.05);
+            padding-left: 10px;
+            border-radius: 12px;
+        }
+
+        .contact-list li i {
+            width: 30px;
+            font-size: 20px;
+            color: #bada55;
+        }
+
+        .contact-list li strong {
+            color: #2c3e2f;
+            min-width: 100px;
+        }
+
+        .contact-list li a {
+            color: #4a6fa5;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-list li a:hover {
+            color: #bada55;
+            text-decoration: underline;
+        }
+
+        /* Социальные сети */
+        .social-links {
+            margin-top: 25px;
+        }
+
+        .social-links h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #2c3e2f;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #f0f2f5;
+            padding: 10px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .social-item:hover {
+            background: #bada55;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .social-item i {
+            font-size: 18px;
+        }
+
+        /* ========== ФОРМА ОБРАТНОЙ СВЯЗИ ========== */
+        .form-card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .form-card h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            color: #2c3e2f;
+            border-bottom: 2px solid #bada55;
+            padding-bottom: 15px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .required-field::after {
+            content: " *";
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #bbb;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .form-group input::selection,
+        .form-group textarea::selection {
+            background-color: #bada55;
+            color: #2c3e2f;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #bada55;
+            box-shadow: 0 0 0 3px rgba(186, 218, 85, 0.2);
+        }
+
+        .form-group input:required,
+        .form-group textarea:required {
+            background-color: #fffef7;
+        }
+
+        .form-group input:required:invalid:not(:placeholder-shown) {
+            border-color: #e74c3c;
+        }
+
+        .checkbox-group {
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .checkbox-group input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-group input:checked {
+            accent-color: #bada55;
+            transform: scale(1.05);
+        }
+
+        .checkbox-group label {
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #bada55 0%, #8fb832 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(186, 218, 85, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .form-message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .form-message.success {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        /* ========== ДОПОЛНИТЕЛЬНЫЙ БЛОК ========== */
+        .extra-block {
+            background: #f8f9fa;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .extra-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        /* График работы */
+        .schedule-box, .faq-box, .instruction-box {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .schedule-box:hover, .faq-box:hover, .instruction-box:hover {
+            transform: translateY(-3px);
+        }
+
+        .schedule-box h3, .faq-box h3, .instruction-box h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #2c3e2f;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #bada55;
+        }
+
+        .schedule-list {
+            list-style: none;
+        }
+
+        .schedule-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #bada55;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .faq-answer {
+            color: #555;
+            font-size: 14px;
+            padding-left: 25px;
+            line-height: 1.5;
+        }
+
+        .instruction-steps {
+            list-style: none;
+        }
+
+        .instruction-steps li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding: 8px;
+            border-radius: 12px;
+        }
+
+        .instruction-steps li:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: #bada55;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .contacts-grid {
+                grid-template-columns: 1fr;
+            }
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            .extra-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="gallery-header">
+        <div class="header-content">
+            <h1><i class="fas fa-info-circle"></i> Контакты</h1>
+            <p class="subtitle">Свяжитесь с нами, чтобы узнать ещё больше о Бобрах</p>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-grid">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i>Главная</a></li>
+                <li><a href="gallery.html" class="nav-link"><i class="fas fa-camera"></i> Галерея</a></li>
+                <li><a href="contacts.html" class="nav-link active"><i class="fas fa-info-circle"></i> Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contacts-wrapper">
+        <div class="contacts-grid">
+            <div class="info-card">
+                <div class="card-header">
+                    <h2>Разработчик</h2>
+                </div>
+                <ul class="contact-list">
+                    <li><strong>ФИО:</strong> <span>Бобр Бобрум Бобревич</span></li>
+                    <li><strong>Email:</strong> <a>boberKurwa@mail.com</a></li>
+                    <li><strong>Специализация:</strong> <span>Бобровое</span></li>
+                    <li><strong>Геопозиция:</strong> <span>Набережные Бобры</span></li>
+                </ul>
+                <div class="social-links">
+                    <h3> Социальные сети и мессенджеры</h3>
+                    <div class="social-grid">
+                        <a href="#" class="social-item"> Telegram</a>
+                        <a href="#" class="social-item"> Однолассники</a>
+                        <a href="#" class="social-item"> Skype</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Форма обратной связи -->
+            <div class="form-card">
+                <h2> Обратная связь</h2>
+                <form class="contact-form" id="feedbackForm">
+                    <div class="form-group">
+                        <label class="required-field"> Ваше имя</label>
+                        <input type="text" name="name" placeholder="Введите ваше имя" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="required-field"> Email</label>
+                        <input type="email" name="email" placeholder="example@mail.ru" required>
+                    </div>
+                    <div class="form-group">
+                        <label> Тема сообщения</label>
+                        <select name="subject">
+                            <option value="question">Вопрос о бобрах</option>
+                            <option value="cooperation">Сотрудничество</option>
+                            <option value="suggestion">Предложение по сайту</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required-field"> Сообщение</label>
+                        <textarea name="message" rows="4" placeholder="Напишите ваше сообщение здесь..." required></textarea>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="consentCheckbox" required>
+                        <label for="consentCheckbox">Я не согласен на не обработку персональных данных</label>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                         Отправить сообщение
+                    </button>
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+
+        <div class="extra-block">
+            <div class="extra-grid">
+                <div class="schedule-box">
+                    <h3> График доступности</h3>
+                    <ul class="schedule-list">
+                        <li><span> Понедельник - Пятница:</span> <span>00:00 – 23:57</span></li>
+                        <li><span> Суббота:</span> <span>12:00 – 12:03</span></li>
+                        <li><span> День вознесенья Боброва:</span> <span>Выходной</span></li>
+                    </ul>
+                </div>
+
+                <div class="faq-box">
+                    <h3> Часто задаваемые вопросы</h3>
+                    <div class="faq-item">
+                        <div class="faq-question"> Как быстро вы отвечаете?</div>
+                        <div class="faq-answer">Вам понадообится терпение, а может и не понадобится</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question"> Могу ли я стать Бобром?</div>
+                        <div class="faq-answer">Да нет</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question"> Как предложить новость о Бобрах?</div>
+                        <div class="faq-answer">На колени. Молитесь.</div>
+                    </div>
+                </div>
+
+                <div class="instruction-box">
+                    <h3> Инструкция по связи</h3>
+                    <ul class="instruction-steps">
+                        <li><span class="step-number">1</span> Заполните форму обратной связи</li>
+                        <li><span class="step-number">2</span> Отметьте согласие на обработку данных</li>
+                        <li><span class="step-number">3</span> Нажмите "Отправить сообщение"</li>
+                        <li><span class="step-number">4</span> Дождитесь письма с подтверждением от Бобра</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-size: 14px; color: #666;"> Ваши данные не защищены и передаются третьим лицам, четвёртым лицам и Бобрам.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="gallery-footer">
+        <div class="footer-content">
+            <p>©Задорин Иван, студент 1 курса, группа 1ИП-2-25, 2026</p>
+            
+        </div>
+    </footer>
+</body>
+</html>
